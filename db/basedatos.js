@@ -2,19 +2,17 @@ import { MongoClient} from 'mongodb';
 import Dotenv from "dotenv";
 
 Dotenv.config({ path: './.env' });
+
 const url = process.env.DATABASE_URL;
 const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology:true
-
 });
 
 let conexion;
-
 const getDB = ()=>{
     return conexion;
 }
-
 
 const ConectarBD = (callback)=>{
     client.connect((err, db)=>{
@@ -28,6 +26,6 @@ const ConectarBD = (callback)=>{
     });
 };
 
-export {ConectarBD, getDB}
+export {ConectarBD, getDB};
 
  

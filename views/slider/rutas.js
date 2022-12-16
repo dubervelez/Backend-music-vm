@@ -1,15 +1,12 @@
 import Express  from 'express';
 import { getDB } from '../../db/basedatos.js';
 import { ObjectId } from 'mongodb';
+import { queryallslider, crearSlider } from '../../controllers/slider/controller.js';
+
 const rutasSlider = Express.Router();
 
-
-
-//peticion tipo Get
-rutasSlider.route("/admin/informacion-slider").get ( (req, res)=>{
-    console.log("alguien hizo get en la ruta /login")
-    const conexion = getDB(); 
-    conexion.collection('slider').find({}).limit(50).toArray((err, result)=>{
+const genericCallback = (res)=>{
+    return( (err, result)=>{
         if (err) {
             console.log(err)
             res.sendStatus(500)
@@ -18,21 +15,18 @@ rutasSlider.route("/admin/informacion-slider").get ( (req, res)=>{
             res.json(result);
         }
     })
-})
+}
 
+
+//peticion tipo Get
+rutasSlider.route("/admin/informacion-slider").get ( (req, res)=>{
+    console.log("alguien hizo get en la ruta /login")
+    queryallslider(genericCallback(res))
+})
+    
 rutasSlider.route("/admin/creacion-slider").post((req, res)=>{
-    const datosSlider = req.body;
     console.log("el usuario envio el requerimiento"+ req.body)
-    const conexion = getDB();
-    conexion.collection('slider').insertOne(datosSlider, (err, result)=>{
-        if (err) {
-            console.log(err)
-            res.sendStatus(500)
-        }else{
-            console.log(result)
-            res.sendStatus(200)
-        }
-    } )
+    crearSlider(req.body, genericCallback(res))
 })
 
 rutasSlider.route('/admin/modificar-slider').patch((req, res)=>{

@@ -1,10 +1,8 @@
-import { ConectarBD } from './db/basedatos.js';
 import Express  from 'express';
-
+import { ConectarBD } from './db/basedatos.js';
 import Cors from 'cors';
 import Dotenv from "dotenv";
 import rutasSlider from './views/slider/rutas.js';
-
 
 
 
