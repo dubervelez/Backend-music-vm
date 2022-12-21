@@ -1,7 +1,7 @@
 import Express  from 'express';
-import { getDB } from '../../db/basedatos.js';
 
-import { queryallslider, crearSlider, actualizarSlider } from '../../controllers/slider/controller.js';
+
+import { queryallslider, crearSlider, actualizarSlider, eliminarSlider } from '../../controllers/slider/controller.js';
 
 const rutasSlider = Express.Router();
 
@@ -32,6 +32,11 @@ rutasSlider.route("/admin/creacion-slider").post((req, res)=>{
 rutasSlider.route('/admin/modificar-slider').patch((req, res)=>{
     console.log("el usuario quiere editar la db slider");
     actualizarSlider(req.body, genericCallback(res));
+});
+
+rutasSlider.route('/admin/eliminar-slider').delete((req, res)=>{
+    eliminarSlider(req.body, genericCallback(res));
+    console.log("el usuario eliminó un dato de la BD Slider");
 });
 
 export default rutasSlider;

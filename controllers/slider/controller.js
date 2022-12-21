@@ -20,5 +20,10 @@ const actualizarSlider = async(edicion, callback)=>{
     await conexion.collection('slider').findOneAndUpdate(idEdicion, operacion, callback)
 }
 
+const eliminarSlider = async(elementoEliminar, callback)=>{
+    const query = { idSlider: elementoEliminar.idSlider };
+    const conexion = getDB();
+    await conexion.collection('slider').deleteOne(query, callback);
+}
 
-export { queryallslider, crearSlider, actualizarSlider };
+export { queryallslider, crearSlider, actualizarSlider, eliminarSlider };
