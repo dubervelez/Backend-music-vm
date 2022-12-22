@@ -14,5 +14,10 @@ const crearCard = async(datosCard, callback)=>{
     
 };
 
+const obtenerCards = async(callback)=>{
+    const conexion = getDB();
+    await conexion.collection('ultimos-lanzamientos').find({}).toArray(callback);
+}
 
-export { crearCard };
+
+export { crearCard, obtenerCards };
