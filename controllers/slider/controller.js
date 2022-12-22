@@ -1,5 +1,5 @@
 import { getDB } from '../../db/basedatos.js';
-import { ObjectId } from 'mongodb';
+
 
 const queryallslider = async (callback)=>{
     const conexion = getDB(); 
