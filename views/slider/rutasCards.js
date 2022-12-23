@@ -1,5 +1,5 @@
 import Express  from 'express';
-import { crearCard, obtenerCards } from '../../controllers/slider/cards.js';
+import { crearCard, editarCard, eliminarCard, obtenerCards } from '../../controllers/slider/cards.js';
 
 
 const rutasCards = Express.Router();
@@ -27,5 +27,12 @@ rutasCards.route("/admin/ultimos-lanzamientos/").get((req, res)=>{
     obtenerCards(genericCallback(res))
 })
 
+rutasCards.route("/admin/ultimos-lanzamientos/eliminar").delete((req, res)=>{
+    eliminarCard(req.body, genericCallback(res))
+})
+
+rutasCards.route("/admin/ultimos-lanzamientos/editar").patch((req, res)=>{
+    editarCard(req.body, genericCallback(res));
+})
 
 export default rutasCards

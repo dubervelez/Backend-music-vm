@@ -1,9 +1,10 @@
+import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/basedatos.js';
 
 const crearCard = async(datosCard, callback)=>{
     const conexion = getDB();
     // pendiente codigo para validaciones --------------------------------------
-    const llaves = Object.values(datosCard)
+    const llaves = Object.values(datosCard);
     let datosok = true;
     llaves.forEach((i)=>{
         if (i) {
@@ -17,7 +18,23 @@ const crearCard = async(datosCard, callback)=>{
 const obtenerCards = async(callback)=>{
     const conexion = getDB();
     await conexion.collection('ultimos-lanzamientos').find({}).toArray(callback);
+};
+
+const eliminarCard = async ( datosCard,callback )=>{
+    const filtro = { cancion: datosCard.cancion };
+    const conexion = getDB();
+    await conexion.collection('ultimos-lanzamientos').deleteOne(filtro, callback);
+};
+
+const editarCard = async (datosCard, callback)=>{
+    const filtro = { _id: new ObjectId(datosCard.id) }
+    const operacion ={
+        $set: datosCard
+    };
+    delete datosCard.id
+    const conexion = getDB();
+    await conexion.collection('ultimos-lanzamientos').findOneAndUpdate(filtro, operacion, callback);
 }
 
 
-export { crearCard, obtenerCards };
+export { crearCard, obtenerCards, eliminarCard, editarCard };
