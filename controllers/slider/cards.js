@@ -17,7 +17,7 @@ const crearCard = async(datosCard, callback)=>{
 
 const obtenerCards = async(callback)=>{
     const conexion = getDB();
-    await conexion.collection('ultimos-lanzamientos').find({}).toArray(callback);
+    await conexion.collection('ultimos-lanzamientos').find({}).sort({ _id: -1 }).toArray(callback);
 };
 
 const eliminarCard = async ( datosCard,callback )=>{
