@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "build": "npm run build",
+    "build": "npm run build:server",
     "build:server": "babel src --out-dir build --copy-files --ignore __tests__",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
