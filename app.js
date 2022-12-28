@@ -14,8 +14,8 @@ app.use(rutasSlider);
 app.use(rutasCards)
 
 const main = ()=> {
-    return app.listen(process.env.PORT,()=>{
-        console.log(`escuchando el puerto: ${process.env.PORT}...`)
+    return app.listen(5000,()=>{
+        console.log(`escuchando el puerto: ${5000}...`)
     });  
 };
 
