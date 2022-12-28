@@ -19,8 +19,7 @@ const genericCallback = (res)=>{
 
 
 rutasCards.route("/admin/ultimos-lanzamientos/nuevo").post((req, res)=>{
-    crearCard(req.body, genericCallback(res));
-    console.log("el usuario agregó un nuevo dato a la colección");
+    crearCard(req.body, res, genericCallback(res));
 })
 
 rutasCards.route("/admin/ultimos-lanzamientos/").get((req, res)=>{

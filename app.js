@@ -5,7 +5,7 @@ import Dotenv from "dotenv";
 import rutasSlider from './views/slider/rutas.js';
 import rutasCards from './views/slider/rutasCards.js';
 
-
+const port = process.env.PORT || 5000;
 Dotenv.config({ path: './.env' });
 const app = Express();
 app.use(Express.json());
@@ -14,8 +14,8 @@ app.use(rutasSlider);
 app.use(rutasCards)
 
 const main = ()=> {
-    return app.listen(5000,()=>{
-        console.log(`escuchando el puerto: ${5000}...`)
+    return app.listen(port,()=>{
+        console.log(`escuchando el puerto: ${port}...`)
     });  
 };
 

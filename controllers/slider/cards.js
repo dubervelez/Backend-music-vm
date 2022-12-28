@@ -1,17 +1,17 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/basedatos.js';
 
-const crearCard = async(datosCard, callback)=>{
+const crearCard = async(datosCard,res, callback)=>{
     const conexion = getDB();
     // pendiente codigo para validaciones --------------------------------------
-    const llaves = Object.values(datosCard);
-    let datosok = true;
-    llaves.forEach((i)=>{
-        if (i) {
-           console.log(i)
-        }
-    })
-    await conexion.collection('ultimos-lanzamientos').insertOne(datosCard, callback);
+    const valores = Object.values(datosCard);
+    const datosok = valores.some(valor => valor ==="" || valor === undefined); 
+    if (!datosok){
+        await conexion.collection('ultimos-lanzamientos').insertOne(datosCard, callback);
+        console.log("el usuario agregó un nuevo dato a la colección");
+    }else{
+        res.status(400).send({ error: "request has empty fields" });
+    }
     
 };
 
