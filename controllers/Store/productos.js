@@ -1,5 +1,11 @@
+import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/basedatos.js';
 
+
+export const obtenerProductos = async (callback)=>{
+	const conexion = getDB();
+	await conexion.collection('productosStore').find({}).toArray(callback)
+}
 
 export const crearProducto = ( productoData )=>{
   if (
@@ -14,3 +20,19 @@ export const crearProducto = ( productoData )=>{
   }
     
 };
+
+export const modificarProducto = async( productoData, callback )=>{
+	const filtro = { _id: new ObjectId(productoData._id) }
+	const nuevaData = {
+		$set: productoData
+	}
+	delete productoData._id
+	const conexion = getDB();
+	await conexion.collection('productosStore').findOneAndUpdate(filtro, nuevaData, callback)
+}
+
+export const eliminarProducto = async( productoData, callback )=>{
+	const filtro = { _id: new ObjectId(productoData._id) }
+	const conexion = getDB();
+	await conexion.collection('productosStore').deleteOne(filtro, callback)
+}

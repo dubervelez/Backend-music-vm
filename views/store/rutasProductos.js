@@ -1,5 +1,5 @@
 import Express  from 'express';
-import { crearProducto } from '../../controllers/Store/productos.js';
+import { crearProducto, eliminarProducto, modificarProducto, obtenerProductos } from '../../controllers/Store/productos.js';
 import { getDB } from '../../db/basedatos.js';
 
 
@@ -22,6 +22,10 @@ const validaciones = (res)=>{
     return  res.status(400).send({ error: "solicitud no cumple con las validaciones"})
 }
 
+rutasproductos.route('/store/obtener-productos').get((req, res)=>{
+    obtenerProductos(genericCallback(res));
+    
+})
 
 rutasproductos.route('/store/nuevo-producto').post( (req, res)=>{ 
     if (crearProducto(req.body)){
@@ -31,6 +35,13 @@ rutasproductos.route('/store/nuevo-producto').post( (req, res)=>{
         validaciones(res);
     }
 })
- 
+
+rutasproductos.route('/store/modificar-producto').patch((req, res)=>{
+    modificarProducto(req.body, genericCallback(res));
+})
+
+rutasproductos.route('/store/eliminar-producto').delete((req, res)=>{
+    eliminarProducto(req.body, genericCallback(res));
+})
 
 export default rutasproductos;
