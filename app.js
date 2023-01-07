@@ -5,6 +5,7 @@ import Dotenv from "dotenv";
 import rutasSlider from './views/slider/rutas.js';
 import rutasCards from './views/slider/rutasCards.js';
 import rutasproductos from './views/store/rutasProductos.js';
+import rutasCompras from './views/store/rutaCompras.js';
 
 const port = process.env.PORT || 5000;
 Dotenv.config({ path: './.env' });
@@ -14,6 +15,7 @@ app.use(Cors());
 app.use(rutasSlider);
 app.use(rutasCards)
 app.use(rutasproductos)
+app.use(rutasCompras);
 
 const main = ()=> {
     return app.listen(port,()=>{
