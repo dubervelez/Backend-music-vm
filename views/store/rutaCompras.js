@@ -1,5 +1,5 @@
 import Express  from 'express';
-import { crearCompra } from '../../controllers/Store/compras.js';
+import { crearCompra, obtenerCompras } from '../../controllers/Store/compras.js';
 
 const rutasCompras = Express.Router()
 
@@ -19,8 +19,12 @@ const genericCallback = (res)=>{
 
 rutasCompras.route('/store/nueva-compra').post(( req, res )=>{
     crearCompra(req.body, genericCallback(res))
-
 })
+
+rutasCompras.route('/store/obtener-compras').get(( req, res )=>{
+   obtenerCompras(genericCallback(res))
+})
+
 
 
 export default rutasCompras;
