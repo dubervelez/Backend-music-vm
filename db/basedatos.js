@@ -17,12 +17,14 @@ const getDB = ()=>{
 const ConectarBD = (callback)=>{
     client.connect((err, db)=>{
         if (err){
-            console.error("error de conexion a la base de datos");
+            console.log(url)
+            console.error("Error no se logró conectar a la base de datos");
             return err;
+        }else{
+            conexion = db.db('adminindex');
+            console.log("conexion exitosa");
+            return callback();
         }
-        conexion = db.db('adminindex');
-        console.log("conexion exitosa");
-        return callback();
     });
 };
 
