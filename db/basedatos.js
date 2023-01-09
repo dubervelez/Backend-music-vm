@@ -4,6 +4,7 @@ import Dotenv from "dotenv";
 Dotenv.config({ path: './.env' });
 
 const url = 'mongodb+srv://DuberVelez:Codeba1129535664@proyecto-music-vm.1zorlpc.mongodb.net/?retryWrites=true&w=majority';
+
 const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology:true
@@ -13,12 +14,24 @@ let conexion;
 const getDB = ()=>{
     return conexion;
 }
-
+/*
 const ConectarBD = (callback)=>{
-    client.connect((err, db)=>{
+    MongoClient.connect((err, db)=>{
         if (err){
-            console.log(url)
-            console.error("Error no se logró conectar a la base de datos");
+            console.error("Error, no se logró conectar a la base de datos");
+            return err;
+        }else{
+            conexion = db.db('adminindex');
+            console.log("conexion exitosa");
+            return callback();
+        }
+    });
+};
+*/
+const ConectarBD = (callback)=>{
+    MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology:true},(err, db)=>{
+        if (err){
+            console.error("Error, no se logró conectar a la base de datos");
             return err;
         }else{
             conexion = db.db('adminindex');
@@ -28,6 +41,5 @@ const ConectarBD = (callback)=>{
     });
 };
 
-export {ConectarBD, getDB};
 
- 
+export {ConectarBD, getDB};
