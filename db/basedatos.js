@@ -3,7 +3,7 @@ import Dotenv from "dotenv";
 
 Dotenv.config({ path: './.env' });
 
-const url = process.env.DATABASE_URL;
+const url = process.env.DATABASE_URL || 'mongodb+srv://DuberVelez:Codeba1129535664@proyecto-music-vm.1zorlpc.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(url, {
     useNewUrlParser: true,
     useUnifiedTopology:true
