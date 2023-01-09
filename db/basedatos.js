@@ -29,16 +29,17 @@ const ConectarBD = (callback)=>{
 };
 */
 const ConectarBD = (callback)=>{
-    MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology:true},(err, db)=>{
-        if (err){
-            console.error("Error, no se logró conectar a la base de datos");
-            console.log(err)
-            return err;
-        }
+    MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology:true})
+    .then((db)=> {
         conexion = db.db('adminindex');
         console.log("conexion exitosa");
         return callback();
-    });
+    }) .catch((err)=>{
+        console.error("Error, no se logró conectar a la base de datos");
+        console.log(err)
+        return err;
+    })
+
 };
 
 
