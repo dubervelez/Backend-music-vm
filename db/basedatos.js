@@ -3,7 +3,7 @@ import Dotenv from "dotenv";
 
 Dotenv.config({ path: './.env' });
 
-const url = 'mongodb+srv://DuberVelez:Codeba1129535664@proyecto-music-vm.1zorlpc.mongodb.net/?retryWrites=true&w=majority';
+const url = "mongodb+srv://DuberVelez:Codeba1129535664@proyecto-music-vm.1zorlpc.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(url, {
     useNewUrlParser: true,
@@ -13,7 +13,7 @@ const client = new MongoClient(url, {
 let conexion;
 const getDB = ()=>{
     return conexion;
-}
+} 
 /*
 const ConectarBD = (callback)=>{
     MongoClient.connect((err, db)=>{
@@ -32,12 +32,12 @@ const ConectarBD = (callback)=>{
     MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology:true},(err, db)=>{
         if (err){
             console.error("Error, no se logró conectar a la base de datos");
+            console.log(err)
             return err;
-        }else{
-            conexion = db.db('adminindex');
-            console.log("conexion exitosa");
-            return callback();
         }
+        conexion = db.db('adminindex');
+        console.log("conexion exitosa");
+        return callback();
     });
 };
 

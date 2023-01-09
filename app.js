@@ -17,7 +17,9 @@ app.use(rutasCards)
 app.use(rutasproductos)
 app.use(rutasCompras);
 
-
+app.get("/", (req, res)=>{
+    res.status(200).send("lectura correcta")
+})
 
 const main = ()=> {
     return app.listen(port,()=>{
