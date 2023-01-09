@@ -17,13 +17,15 @@ app.use(rutasCards)
 app.use(rutasproductos)
 app.use(rutasCompras);
 
-app.get("/", (req,res)=>{
-    res.status(200).send({msg: "lectura exitosa"})
-})
 
-app.listen(port,()=>{
-    console.log(`escuchando el puerto: ${port}...`)
-});  
+
+const main = ()=> {
+    return app.listen(port,()=>{
+        console.log(`escuchando el puerto: ${port}...`)
+    });  
+};
+
+ConectarBD(main);
 
 
 
